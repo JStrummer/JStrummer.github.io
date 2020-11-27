@@ -1,0 +1,133 @@
+/* default to border-box*/
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+/* general settings */
+body {
+  overflow: hidden;
+  font-family: 'Italianno', cursive;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+body,
+#calendar-container {
+  margin: 0;
+}
+
+div {
+  text-align: center;
+}
+
+/* styling header */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.text {
+  margin: 0 auto;
+}
+
+label,
+li {
+  display: inline-block;
+}
+
+#submitNameBtn,
+#name {
+  font-family: 'Italianno', cursive;
+  font-weight: 300;
+  font-size: 1.2rem;
+  border-width: 0;
+  border-style: none;
+  background-color: green;
+  color: white;
+}
+
+#header {
+  background-color: red;
+}
+
+#greetings {
+  height: 33%;
+}
+
+#date-container {
+  height: 67%;
+}
+
+/* defining grid*/
+#calendar {
+  padding: 5px;
+  position: fixed;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2vw;
+}
+
+/* styling box statuses */
+.box {
+  background-color: blue;
+  border: none;
+  border-radius: 15px;
+}
+.box.unlocked {
+  box-shadow: 0 0 25px 5px white, 0 0 25px 5px grey, 0 0 25px 5px white, 0 0 25px 5px white;
+}
+
+.box.open {
+  background-color: green;
+}
+
+img {
+  width: 50%;
+}
+
+img.date {
+  position: relative;
+  left: 25%;
+}
+
+.giftImage {
+  position: relative;
+  right: 25%;
+  opacity: 0;
+}
+
+.giftImage.show {
+  opacity: 100;
+  transition: opacity 1s linear;
+}
+
+#gift-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+#gift {
+  width: 100%;
+}
+
+#close-button {
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-family: sans-serif;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+  background-color: white;
+}
+
+#close-button:hover {
+  cursor: pointer;
+}
