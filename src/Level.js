@@ -42,6 +42,7 @@ class Level {
   }
 
   moveStart(event) {
+    alert("click");
     this.startMove = getCoord(event);
   }
 
