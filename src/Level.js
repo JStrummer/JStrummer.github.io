@@ -21,7 +21,7 @@ class Level {
     // document.addEventListener("mouseup", this.moveEnd.bind(this));
 
     this.draw.canvas.addEventListener("touchstart", this.touchStart.bind(this));
-    // document.addEventListener("touchend", this.touchEnd.bind(this));
+    document.addEventListener("touchend", this.touchEnd.bind(this));
   }
 
   get won() {
@@ -49,8 +49,8 @@ class Level {
   }
 
   touchStart(event) {
-    // event.preventDefault();
-    // this.startMove = getTouchCoord(event.touches[0]);
+    event.preventDefault();
+    this.startMove = getTouchCoord(event.touches[0]);
 
     let p = document.createElement("p");
     p.innerText = "touchStart";
