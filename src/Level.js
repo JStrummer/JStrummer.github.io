@@ -49,18 +49,62 @@ class Level {
   }
 
   touchStart(event) {
-    // event.preventDefault();
-    // this.startMove = getTouchCoord(event.touches[0]);
+    event.preventDefault();
+    this.startMove = getTouchCoord(event.touches[0]);
 
     let p = document.createElement("p");
     p.innerText = "touchStart";
     document.body.appendChild(p);
   }
 
-  moveEnd(event) {
+  touchEnd(event) {
     event.preventDefault();
+
+    let p = document.createElement("p");
+    p.innerText = "touchEnd";
+    document.body.appendChild(p);
+
     if (not(isNull)(this.startMove)) {
       let endMove = getTouchCoord(event.touches[0]);
+
+      let movements = {
+        x: endMove.x - this.startMove.x,
+        y: endMove.y - this.startMove.y
+      };
+
+      let movement = greaterAbs(movements);
+
+      if (this.tiles.move(getDirection(movement))) {
+        this.draw.grid(this.tiles.tiles);
+
+        this.checkWin();
+      }
+    }
+
+    this.startMove = null;
+
+    function greaterAbs({ x, y }) {
+      return Math.abs(x) > Math.abs(y) ? { x } : { y };
+    }
+
+    function getDirection(movement) {
+      let result;
+
+      let [axis, value] = Object.entries(movement)[0];
+
+      if (axis === "x") {
+        result = value > 0 ? "right" : "left";
+      } else if (axis === "y") {
+        result = value > 0 ? "down" : "up";
+      }
+
+      return result;
+    }
+  }
+
+  moveEnd(event) {
+    if (not(isNull)(this.startMove)) {
+      let endMove = getCoord(event);
 
       let movements = {
         x: endMove.x - this.startMove.x,
