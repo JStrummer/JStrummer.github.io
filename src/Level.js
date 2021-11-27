@@ -53,19 +53,19 @@ class Level {
     this.startMove = getTouchCoord(event.touches[0]);
 
     let p = document.createElement("p");
-    p.innerText = "touchStart";
+    p.innerText = "touchStart " + this.startMove;
     document.body.appendChild(p);
   }
 
   touchEnd(event) {
     event.preventDefault();
 
-    let p = document.createElement("p");
-    p.innerText = "touchEnd";
-    document.body.appendChild(p);
-
     if (not(isNull)(this.startMove)) {
       let endMove = getTouchCoord(event.touches[0]);
+
+      let p = document.createElement("p");
+      p.innerText = "touchEnd" + endMove;
+      document.body.appendChild(p);
 
       let movements = {
         x: endMove.x - this.startMove.x,
