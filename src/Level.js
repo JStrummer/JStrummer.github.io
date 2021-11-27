@@ -50,7 +50,6 @@ class Level {
 
   touchStart(event) {
     event.preventDefault();
-    alert("touchStart");
     this.startMove = getTouchCoord(event.touches[0]);
   }
 
