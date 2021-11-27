@@ -20,13 +20,8 @@ class Level {
     // this.draw.canvas.addEventListener("mousedown", this.moveStart.bind(this));
     // document.addEventListener("mouseup", this.moveEnd.bind(this));
 
-    // this.draw.canvas.addEventListener("touchstart", this.touchStart.bind(this));
+    this.draw.canvas.addEventListener("touchstart", this.touchStart.bind(this));
     // document.addEventListener("touchend", this.touchEnd.bind(this));
-    this.draw.canvas.addEventListener("click", () => {
-      let p = document.createElement("p");
-      p.innerText = "touchStart";
-      document.body.appendChild(p);
-    });
   }
 
   get won() {
