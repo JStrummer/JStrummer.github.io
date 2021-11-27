@@ -81,3 +81,7 @@ function not(fn) {
 function getCoord(event) {
   return { x: event.offsetX, y: event.offsetY };
 }
+
+function getTouchCoord(touch) {
+  return { x: touch.screenX, y: touch.screenY };
+}

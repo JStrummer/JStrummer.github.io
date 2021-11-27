@@ -17,8 +17,11 @@ class Level {
 
     document.addEventListener("keydown", this.handleKeyPress.bind(this));
     // movement must start inside the canvas
-    this.draw.canvas.addEventListener("mousedown", this.moveStart.bind(this));
-    document.addEventListener("mouseup", this.moveEnd.bind(this));
+    // this.draw.canvas.addEventListener("mousedown", this.moveStart.bind(this));
+    // document.addEventListener("mouseup", this.moveEnd.bind(this));
+
+    this.draw.canvas.addEventListener("touchstart", this.touchStart.bind(this));
+    document.addEventListener("touchend", this.touchEnd.bind(this));
   }
 
   get won() {
@@ -45,9 +48,15 @@ class Level {
     this.startMove = getCoord(event);
   }
 
+  touchStart(event) {
+    event.preventDefault();
+    this.startMove = getTouchCoord(event.touches[0]);
+  }
+
   moveEnd(event) {
+    event.preventDefault();
     if (not(isNull)(this.startMove)) {
-      let endMove = getCoord(event);
+      let endMove = getTouchCoord(event.touches[0]);
 
       let movements = {
         x: endMove.x - this.startMove.x,
