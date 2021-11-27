@@ -51,6 +51,10 @@ class Level {
   touchStart(event) {
     event.preventDefault();
     this.startMove = getTouchCoord(event.touches[0]);
+
+    let p = document.createElement("p");
+    p.innerText = "touchStart";
+    document.body.appendChild(p);
   }
 
   moveEnd(event) {
