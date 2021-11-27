@@ -15,7 +15,7 @@ class Level {
     this.tiles.shuffle();
     this.draw.init(this.tiles.tiles);
 
-    document.addEventListener("keydown", this.handleKeyPress.bind(this));
+    // document.addEventListener("keydown", this.handleKeyPress.bind(this));
     // movement must start inside the canvas
     // this.draw.canvas.addEventListener("mousedown", this.moveStart.bind(this));
     // document.addEventListener("mouseup", this.moveEnd.bind(this));
@@ -49,8 +49,8 @@ class Level {
   }
 
   touchStart(event) {
-    event.preventDefault();
-    this.startMove = getTouchCoord(event.touches[0]);
+    // event.preventDefault();
+    // this.startMove = getTouchCoord(event.touches[0]);
 
     let p = document.createElement("p");
     p.innerText = "touchStart";
