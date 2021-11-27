@@ -53,8 +53,10 @@ class Level {
     this.startMove = getTouchCoord(event.touches[0]);
 
     let p = document.createElement("p");
-    p.innerText = "touchStart " + this.startMove;
+    p.innerText = "touchStart";
     document.body.appendChild(p);
+
+    alert(this.startMove);
   }
 
   touchEnd(event) {
@@ -64,7 +66,7 @@ class Level {
       let endMove = getTouchCoord(event.touches[0]);
 
       let p = document.createElement("p");
-      p.innerText = "touchEnd" + endMove;
+      p.innerText = "touchEnd";
       document.body.appendChild(p);
 
       let movements = {
