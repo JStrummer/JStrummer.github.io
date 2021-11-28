@@ -30,6 +30,7 @@ class Level {
     let { difficulty } = event.target.dataset;
 
     if (difficulty) {
+      event.stopPropagation();
       this.setDifficulty(difficulty);
       this.init();
     }

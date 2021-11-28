@@ -1,6 +1,7 @@
 "use strict";
 
 let level = null;
+let changeDifficultyHandler = null;
 
 calendarImage.addEventListener("load", () => {
   initHome();
@@ -14,11 +15,7 @@ homeButton.addEventListener("click", ev => {
 });
 
 const restartButton = document.getElementById("restart-button");
-restartButton.addEventListener("click", ev => {
-  ev.preventDefault();
-
-  level = new Level(level.number, level.tilesNumber);
-});
+restartButton.addEventListener("click", () => level.init());
 
 document.addEventListener("click", ev => {
   let { day } = ev.target.dataset;
@@ -33,10 +30,11 @@ function goToHome() {
 
   if (not(isNull)(level)) {
     document.querySelectorAll("button.difficulty").forEach(button => {
-      button.removeEventListener("click", level.changeDifficulty.bind(level));
+      button.removeEventListener("click", changeDifficultyHandler);
     });
 
     level = null;
+    changeDifficultyHandler = null;
   }
 }
 
@@ -45,8 +43,9 @@ function goToPuzzle(day) {
   puzzle.style.display = "block";
 
   level = new Level(day);
+  changeDifficultyHandler = level.changeDifficulty.bind(level);
 
   document.querySelectorAll("button.difficulty").forEach(button => {
-    button.addEventListener("click", level.changeDifficulty.bind(level));
+    button.addEventListener("click", changeDifficultyHandler);
   });
 }
