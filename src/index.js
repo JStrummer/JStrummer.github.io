@@ -20,10 +20,6 @@ restartButton.addEventListener("click", ev => {
   level = new Level(level.number, level.tilesNumber);
 });
 
-document.querySelectorAll("button.difficulty").forEach(button => {
-  button.addEventListener("click", level.changeDifficulty.bind(level));
-});
-
 document.addEventListener("click", ev => {
   let { day } = ev.target.dataset;
   if (isDef(day) && !ev.target.classList.contains("blocked")) {
@@ -35,7 +31,13 @@ function goToHome() {
   home.style.display = "block";
   puzzle.style.display = "none";
 
-  level = null;
+  if (not(isNull)(level)) {
+    document.querySelectorAll("button.difficulty").forEach(button => {
+      button.removeEventListener("click", level.changeDifficulty.bind(level));
+    });
+
+    level = null;
+  }
 }
 
 function goToPuzzle(day) {
@@ -43,4 +45,8 @@ function goToPuzzle(day) {
   puzzle.style.display = "block";
 
   level = new Level(day);
+
+  document.querySelectorAll("button.difficulty").forEach(button => {
+    button.addEventListener("click", level.changeDifficulty.bind(level));
+  });
 }
