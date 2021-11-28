@@ -26,9 +26,13 @@ class Level {
     this.tilesNumber = Number(value) * Number(value);
   }
 
-  changeDifficulty(value) {
-    this.setDifficulty(value);
-    this.init();
+  changeDifficulty(event) {
+    let { difficulty } = event.target.dataset;
+
+    if (difficulty) {
+      this.setDifficulty(difficulty);
+      this.init();
+    }
   }
 
   get won() {

@@ -21,11 +21,7 @@ restartButton.addEventListener("click", ev => {
 });
 
 document.querySelectorAll("button.difficulty").forEach(button => {
-  let { difficulty } = button.dataset;
-  button.addEventListener(
-    "click",
-    level.changeDifficulty.bind(level, difficulty)
-  );
+  button.addEventListener("click", level.changeDifficulty.bind(level));
 });
 
 document.addEventListener("click", ev => {
