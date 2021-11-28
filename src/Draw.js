@@ -69,6 +69,18 @@ class Draw {
       this.canvas.width,
       this.canvas.height
     );
+
+    this.ctx.drawImage(
+      this.frame,
+      0,
+      0,
+      getLower(this.frame.width, this.frame.height),
+      getLower(this.frame.width, this.frame.height),
+      0,
+      0,
+      this.canvas.width,
+      this.canvas.height
+    );
   }
 
   reset() {
