@@ -10,7 +10,7 @@
     <div id="app">
       <div id="home">
         <div id="version">
-          v. 0.0.13
+          v. 0.0.14
         </div>
         <div id="countdown-container">
           Oggi e' il <span id="current-date"></span><br />
@@ -20,9 +20,22 @@
       </div>
 
       <div id="puzzle">
-        <div id="puzzle-nav">
-          <button type="button" id="home-button">INDIETRO</button>
-          <button type="button" id="restart-button">RINIZIA</button>
+        <div id="puzzle-buttons">
+          <div id="puzzle-nav">
+            <button type="button" id="home-button">INDIETRO</button>
+            <button type="button" id="restart-button">RINIZIA</button>
+          </div>
+          <div id="puzzle-difficulty">
+            <button type="button" class="difficulty" data-difficulty="3">
+              facile
+            </button>
+            <button type="button" class="difficulty" data-difficulty="4">
+              normale
+            </button>
+            <button type="button" class="difficulty" data-difficulty="5">
+              difficile
+            </button>
+          </div>
         </div>
         <canvas id="puzzle-grid"></canvas>
       </div>

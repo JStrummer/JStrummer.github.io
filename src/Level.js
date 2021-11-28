@@ -92,7 +92,6 @@ class Level {
           let tiles = this.tiles.tiles;
           tiles[tiles.length - 1] = tiles.length - 1;
           this.draw.solution();
-          console.log(this.tiles.tiles);
         }
       }
     }

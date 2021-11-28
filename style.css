@@ -28,6 +28,11 @@ body {
   margin-top: 1em;
 }
 
+#puzzle-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 #calendar {
   display: none;
 }
