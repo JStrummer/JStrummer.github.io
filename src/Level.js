@@ -3,7 +3,7 @@
 class Level {
   constructor(number) {
     this.number = number;
-    this.tilesNumber = 9;
+    this.tilesNumber = 4;
     this.tiles = new Grid(this.tilesNumber);
     this.draw = new Draw(this.number);
     this.startMove = null;
