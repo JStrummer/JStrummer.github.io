@@ -17,7 +17,15 @@ const restartButton = document.getElementById("restart-button");
 restartButton.addEventListener("click", ev => {
   ev.preventDefault();
 
-  level = new Level(level.number);
+  level = new Level(level.number, level.tilesNumber);
+});
+
+document.querySelectorAll("buttons.difficulty").forEach(button => {
+  let { difficulty } = button.dataset;
+  button.addEventListener(
+    "click",
+    level.changeDifficulty.bind(level, difficulty)
+  );
 });
 
 document.addEventListener("click", ev => {

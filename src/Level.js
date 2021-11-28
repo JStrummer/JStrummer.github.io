@@ -1,24 +1,34 @@
 "use strict";
 
 class Level {
-  constructor(number) {
+  constructor(number, tilesNumber = 16) {
     this.number = number;
-    this.tilesNumber = 4;
-    this.tiles = new Grid(this.tilesNumber);
+    this.tilesNumber = tilesNumber;
+    this.tiles = null;
     this.draw = new Draw(this.number);
     this.startMove = null;
 
     this.init();
-  }
-
-  init() {
-    this.tiles.shuffle();
-    this.draw.init(this.tiles.tiles);
 
     document.addEventListener("keydown", this.handleKeyPress.bind(this));
     // movement must start inside the canvas
     this.draw.canvas.addEventListener("touchstart", this.touchStart.bind(this));
     document.addEventListener("touchend", this.touchEnd.bind(this));
+  }
+
+  init() {
+    this.tiles = new Grid(this.tilesNumber);
+    this.tiles.shuffle();
+    this.draw.init(this.tiles.tiles);
+  }
+
+  setDifficulty(value) {
+    this.tilesNumber = Number(value) * Number(value);
+  }
+
+  changeDifficulty(value) {
+    this.setDifficulty(value);
+    this.init();
   }
 
   get won() {
