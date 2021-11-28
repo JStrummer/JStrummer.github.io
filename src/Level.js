@@ -69,7 +69,7 @@ class Level {
 
         // this.checkWin();
         if (this.won) {
-          this.tiles.tiles.at(-1) = this.tiles.number - 1;
+          this.tiles.tiles[this.tiles.tiles.length - 1] = this.tiles.number - 1;
           this.draw.solution();
         }
       }
@@ -143,7 +143,7 @@ class Level {
 
         // this.checkWin();
         if (this.won) {
-          this.tiles.tiles.at(-1) = this.tiles.number - 1;
+          this.tiles.tiles[this.tiles.tiles.length - 1] = this.tiles.number - 1;
           this.draw.solution();
           console.log(this.tiles.tiles);
         }
