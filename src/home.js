@@ -9,7 +9,7 @@ function initHome() {
 
   timer().start();
   createBoxes();
-  blokFutureDate();
+  blockFutureDate();
   drawBoxes();
 
   function createBoxes() {
@@ -24,7 +24,7 @@ function initHome() {
     });
   }
 
-  function blokFutureDate() {
+  function blockFutureDate() {
     let boxes = document.querySelectorAll(".calendar-box");
 
     boxes.forEach(box => {

@@ -9,6 +9,10 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  margin: 0;
+}
+
 #app {
   width: 100%;
 }
@@ -17,6 +21,10 @@ html {
 #puzzle,
 #puzzle-grid {
   width: 100%;
+}
+
+#puzzle-grid {
+  margin-top: 1em;
 }
 
 #calendar {
