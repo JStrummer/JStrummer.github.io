@@ -6,6 +6,8 @@ class Draw {
     this.ctx = this.canvas.getContext("2d");
     this.img = new Image();
     this.imageSrc = "images/" + imageName + ".jpeg";
+    this.frame = new Image();
+    this.frame.src = "images/frame.png";
   }
 
   init(grid) {
@@ -20,7 +22,8 @@ class Draw {
     this.reset();
 
     let n = Math.sqrt(grid.length);
-    let sourceTileSize = getLower(this.img.width, this.img.height) / n;
+    let imgTileSize = getLower(this.img.width, this.img.height) / n;
+    let frameTileSize = getLower(this.frame.width, this.frame.height) / n;
     let tileSize = this.canvas.width / n;
 
     for (let i = 0; i < grid.length; i++) {
@@ -28,10 +31,22 @@ class Draw {
 
       this.ctx.drawImage(
         this.img,
-        (tile % n) * sourceTileSize,
-        Math.floor(tile / n) * sourceTileSize,
-        sourceTileSize,
-        sourceTileSize,
+        (tile % n) * imgTileSize,
+        Math.floor(tile / n) * imgTileSize,
+        imgTileSize,
+        imgTileSize,
+        (i % n) * tileSize,
+        Math.floor(i / n) * tileSize,
+        tileSize,
+        tileSize
+      );
+
+      this.ctx.drawImage(
+        this.frame,
+        (tile % n) * frameTileSize,
+        Math.floor(tile / n) * frameTileSize,
+        frameTileSize,
+        frameTileSize,
         (i % n) * tileSize,
         Math.floor(i / n) * tileSize,
         tileSize,
