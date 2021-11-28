@@ -15,7 +15,7 @@ class Level {
     this.tiles.shuffle();
     this.draw.init(this.tiles.tiles);
 
-    // document.addEventListener("keydown", this.handleKeyPress.bind(this));
+    document.addEventListener("keydown", this.handleKeyPress.bind(this));
     // movement must start inside the canvas
     // this.draw.canvas.addEventListener("mousedown", this.moveStart.bind(this));
     // document.addEventListener("mouseup", this.moveEnd.bind(this));
@@ -141,7 +141,12 @@ class Level {
       if (this.tiles.move(direction)) {
         this.draw.grid(this.tiles.tiles);
 
-        this.checkWin();
+        // this.checkWin();
+        if (this.won) {
+          this.tiles.tiles.at(-1) = this.tiles.number - 1;
+          this.draw.solution();
+          console.log(this.tiles.tiles);
+        }
       }
     }
   }
