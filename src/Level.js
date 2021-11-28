@@ -67,7 +67,11 @@ class Level {
       if (this.tiles.move(getDirection(movement))) {
         this.draw.grid(this.tiles.tiles);
 
-        this.checkWin();
+        // this.checkWin();
+        if (this.won) {
+          this.tiles.tiles.at(-1) = this.tiles.number - 1;
+          this.draw.solution();
+        }
       }
     }
 
