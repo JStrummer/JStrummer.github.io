@@ -31,8 +31,9 @@ class Grid {
     let nextTileIndex = emptyTileIndex + getNext(direction, this.width);
 
     if (
-      (direction === "right" || direction === "left") &&
-      this.getRow(emptyTileIndex) !== this.getRow(nextTileIndex)
+      emptyTileIndex === -1 ||
+      ((direction === "right" || direction === "left") &&
+        this.getRow(emptyTileIndex) !== this.getRow(nextTileIndex))
     ) {
       return false;
     }
