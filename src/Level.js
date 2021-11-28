@@ -50,23 +50,19 @@ class Level {
 
   touchStart(event) {
     event.preventDefault();
-    this.startMove = getTouchCoord(event.touches[0]);
+    this.startMove = getTouchCoord(event.changedTouches[0]);
 
     let p = document.createElement("p");
-    p.innerText = "touchStart";
+    p.innerText = `TOUCHSTART ${event.changedTouches[0].identifier}, ${this.startMove.x}, ${this.startMove.y}`;
     document.body.appendChild(p);
-
-    alert(this.startMove);
   }
 
   touchEnd(event) {
-    event.preventDefault();
-
     if (not(isNull)(this.startMove)) {
-      let endMove = getTouchCoord(event.touches[0]);
+      let endMove = getTouchCoord(event.changedTouches[0]);
 
       let p = document.createElement("p");
-      p.innerText = "touchEnd";
+      p.innerText = `TOUCHEND ${event.changedTouches[0].identifier}, ${this.startMove.x}, ${this.startMove.y}`;
       document.body.appendChild(p);
 
       let movements = {
