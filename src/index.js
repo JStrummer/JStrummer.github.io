@@ -20,7 +20,7 @@ restartButton.addEventListener("click", ev => {
   level = new Level(level.number, level.tilesNumber);
 });
 
-document.querySelectorAll("buttons.difficulty").forEach(button => {
+document.querySelectorAll("button.difficulty").forEach(button => {
   let { difficulty } = button.dataset;
   button.addEventListener(
     "click",
