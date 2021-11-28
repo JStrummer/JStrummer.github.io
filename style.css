@@ -30,6 +30,10 @@ html {
   grid-template-rows: repeat(5, 1fr);
 }
 
+button {
+  min-height: 40px;
+}
+
 .calendar-box {
   border: 2px solid white;
 }
