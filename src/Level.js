@@ -17,9 +17,6 @@ class Level {
 
     document.addEventListener("keydown", this.handleKeyPress.bind(this));
     // movement must start inside the canvas
-    // this.draw.canvas.addEventListener("mousedown", this.moveStart.bind(this));
-    // document.addEventListener("mouseup", this.moveEnd.bind(this));
-
     this.draw.canvas.addEventListener("touchstart", this.touchStart.bind(this));
     document.addEventListener("touchend", this.touchEnd.bind(this));
   }
@@ -35,17 +32,6 @@ class Level {
     }
 
     return result;
-  }
-
-  checkWin() {
-    if (this.won) {
-      console.log("WINNER");
-      this.draw.solution();
-    }
-  }
-
-  moveStart(event) {
-    this.startMove = getCoord(event);
   }
 
   touchStart(event) {
@@ -67,50 +53,11 @@ class Level {
       if (this.tiles.move(getDirection(movement))) {
         this.draw.grid(this.tiles.tiles);
 
-        // this.checkWin();
         if (this.won) {
-          this.tiles.tiles[this.tiles.tiles.length - 1] = this.tiles.number - 1;
+          let tiles = this.tiles.tiles;
+          tiles[tiles.length - 1] = tiles.length - 1;
           this.draw.solution();
         }
-      }
-    }
-
-    this.startMove = null;
-
-    function greaterAbs({ x, y }) {
-      return Math.abs(x) > Math.abs(y) ? { x } : { y };
-    }
-
-    function getDirection(movement) {
-      let result;
-
-      let [axis, value] = Object.entries(movement)[0];
-
-      if (axis === "x") {
-        result = value > 0 ? "right" : "left";
-      } else if (axis === "y") {
-        result = value > 0 ? "down" : "up";
-      }
-
-      return result;
-    }
-  }
-
-  moveEnd(event) {
-    if (not(isNull)(this.startMove)) {
-      let endMove = getCoord(event);
-
-      let movements = {
-        x: endMove.x - this.startMove.x,
-        y: endMove.y - this.startMove.y
-      };
-
-      let movement = greaterAbs(movements);
-
-      if (this.tiles.move(getDirection(movement))) {
-        this.draw.grid(this.tiles.tiles);
-
-        this.checkWin();
       }
     }
 
@@ -141,9 +88,9 @@ class Level {
       if (this.tiles.move(direction)) {
         this.draw.grid(this.tiles.tiles);
 
-        // this.checkWin();
         if (this.won) {
-          this.tiles.tiles[this.tiles.tiles.length - 1] = this.tiles.number - 1;
+          let tiles = this.tiles.tiles;
+          tiles[tiles.length - 1] = tiles.length - 1;
           this.draw.solution();
           console.log(this.tiles.tiles);
         }
