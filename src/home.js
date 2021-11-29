@@ -18,7 +18,7 @@ function initHome() {
       canvas.classList.add("calendar-box");
 
       canvas.dataset.day = day;
-      canvas.width = canvas.height = root.offsetWidth / 5;
+      canvas.width = canvas.height = (root.offsetWidth * 0.95) / 5;
 
       root.appendChild(canvas);
     });

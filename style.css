@@ -13,6 +13,7 @@ body {
   margin: 0;
   margin-top: 8px;
 }
+
 body,
 button {
   font-family: "Italianno", cursive;
@@ -21,11 +22,12 @@ button {
 }
 
 #countdown-container {
-  padding: 1em;
+  padding: 0.5em;
 }
 
 #app {
   width: 100%;
+  padding: 8px;
 }
 
 #home,
@@ -71,4 +73,8 @@ button {
 .calendar-box.blocked:hover {
   cursor: not-allowed;
   border-color: white;
+}
+
+#version {
+  text-align: right;
 }
