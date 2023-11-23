@@ -1,6 +1,6 @@
 import { getElement } from "../DOMutils.js";
 
-export const XMAS = new Date(2021, 11, 25);
+export const XMAS = new Date(new Date().getFullYear(), 11, 25);
 
 /**
  * @type {HTMLImageElement}

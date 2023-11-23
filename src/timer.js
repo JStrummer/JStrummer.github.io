@@ -31,7 +31,7 @@ export function TIMER() {
   function parseDate(date) {
     const day = date.getDate().toString();
     const month = translateMonth[date.getMonth()];
-    const year = (date.getFullYear() + 1900).toString();
+    const year = date.getFullYear().toString();
 
     return `${day} ${month} ${year}`;
   }
