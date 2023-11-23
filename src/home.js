@@ -1,54 +1,60 @@
 import { range } from "./utils.js";
-import { getAllElements, getElement } from "../DOMutils.js";
+import { getElement } from "../DOMutils.js";
 import { CALENDAR_IMAGE } from "./globals.js";
 import { TIMER } from "./timer.js";
 
 export function initHome() {
+  const sourceStep = CALENDAR_IMAGE.width / 5;
+  const TODAY = new Date(Date.now());
+
   /**
    * @type {HTMLDivElement}
    */
   const root = getElement("#calendar-container");
 
-  const sourceStep = CALENDAR_IMAGE.width / 5;
-  const TODAY = new Date(Date.now());
+  const boxes = createBoxes();
+
+  blockFutureDate(boxes);
+  drawBoxes(boxes);
+
+  boxes.forEach((box) => {
+    root.appendChild(box);
+  });
 
   TIMER().start();
-  createBoxes();
-  blockFutureDate();
-  drawBoxes();
 
   function createBoxes() {
-    range(1, 25).forEach((day) => {
+    return range(1, 25).map((day) => {
       const canvas = document.createElement("canvas");
-      canvas.classList.add("calendar-box", "blocked");
+      canvas.classList.add("calendar-box");
 
       canvas.dataset.day = day.toString();
-
-      root.appendChild(canvas);
+      return canvas;
     });
   }
 
-  function blockFutureDate() {
-    const boxes = document.querySelectorAll(".calendar-box");
-
+  /**
+   *
+   * @param {HTMLCanvasElement[]} boxes
+   */
+  function blockFutureDate(boxes) {
     boxes.forEach((box) => {
       /**
        * @type {{day:string}}
        */
       //@ts-ignore
       const { day } = box.dataset;
-      if (TODAY < new Date(2021, 10, Number(day))) {
+      if (TODAY < new Date(TODAY.getFullYear(), 11, Number(day))) {
         box.classList.add("blocked");
       }
     });
   }
 
-  function drawBoxes() {
-    /**
-     * @type {NodeListOf<HTMLCanvasElement>}
-     */
-    const boxes = getAllElements(".calendar-box");
-
+  /**
+   *
+   * @param {HTMLCanvasElement[]} boxes
+   */
+  function drawBoxes(boxes) {
     boxes.forEach((box, index) => {
       const ctx = box.getContext("2d");
       if (ctx !== null) {
