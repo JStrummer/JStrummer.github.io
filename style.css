@@ -87,6 +87,7 @@ button {
 
 .calendar-box.blocked {
   cursor: not-allowed;
+  filter: grayscale(100%);
 }
 
 #version {
