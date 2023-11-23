@@ -190,8 +190,8 @@ export class Level {
           }
         }
       }
+    } else {
+      throw new Error(`this.tiles is null`);
     }
-
-    throw new Error(`this.tiles is null`);
   }
 }
