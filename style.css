@@ -65,8 +65,14 @@ button {
 #calendar-container {
   width: 100%;
   display: grid;
+  grid-gap: 3px;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
+}
+
+/* make all grid children square */
+#calendar-container * {
+  aspect-ratio: 1;
 }
 
 button {
@@ -90,13 +96,13 @@ button {
 }
 
 .calendar-box:hover {
+  border: 2px solid hsla(0, 0%, 0%, 0.3);
   cursor: pointer;
-  border-color: black;
+  width: 100%;
 }
 
-.calendar-box.blocked:hover {
+.calendar-box.blocked {
   cursor: not-allowed;
-  border-color: white;
 }
 
 #version {
