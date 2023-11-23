@@ -1,7 +1,8 @@
-"use strict";
+import { XMAS } from "./globals.js";
+import { getElement } from "../DOMutils.js";
 
-function timer() {
-  var translateMonth = [
+export function timer() {
+  const translateMonth = [
     "Gennaio",
     "Febbraio",
     "Marzo",
@@ -13,30 +14,40 @@ function timer() {
     "Settembre",
     "Ottobre",
     "Novembre",
-    "Dicembre"
+    "Dicembre",
   ];
 
   // value in milliseconds
-  var sec = 1000;
-  var min = sec * 60;
-  var hour = min * 60;
-  var day = hour * 24;
+  const sec = 1000;
+  const min = sec * 60;
+  const hour = min * 60;
+  const day = hour * 24;
 
+  /**
+   *
+   * @param {Date} date
+   * @returns
+   */
   function parseDate(date) {
-    var day = date.getDate().toString();
-    var month = translateMonth[date.getMonth()];
-    var year = (date.getYear() + 1900).toString();
+    const day = date.getDate().toString();
+    const month = translateMonth[date.getMonth()];
+    const year = (date.getFullYear() + 1900).toString();
 
     return `${day} ${month} ${year}`;
   }
 
+  /**
+   *
+   * @param {Date} targetDate
+   * @returns
+   */
   function timeDifference(targetDate) {
-    var difference = targetDate - Date.now();
+    const difference = Number(targetDate) - Number(Date.now());
 
-    var days = Math.floor(difference / day);
-    var hours = Math.floor((difference - days * day) / hour);
-    var mins = Math.floor((difference - days * day - hours * hour) / min);
-    var seconds = Math.floor(
+    const days = Math.floor(difference / day);
+    const hours = Math.floor((difference - days * day) / hour);
+    const mins = Math.floor((difference - days * day - hours * hour) / min);
+    const seconds = Math.floor(
       (difference - days * day - hours * hour - mins * min) / sec
     );
 
@@ -44,13 +55,19 @@ function timer() {
       days: days,
       hours: hours,
       mins: mins,
-      seconds: seconds
+      seconds: seconds,
     };
   }
 
   function updateTimer() {
-    var currentDate = document.querySelector("#current-date");
-    var countdown = document.querySelector("#countdown");
+    /**
+     * @type {HTMLDivElement}
+     */
+    const currentDate = getElement("#current-date");
+    /**
+     * @type {HTMLDivElement}
+     */
+    const countdown = getElement("#countdown");
     currentDate.textContent = parseDate(new Date(Date.now()));
     countdown.textContent = `${timeDifference(XMAS).days} giorni, ${
       timeDifference(XMAS).hours
@@ -62,6 +79,6 @@ function timer() {
   }
 
   return {
-    start: updateTimer
+    start: updateTimer,
   };
 }

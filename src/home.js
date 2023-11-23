@@ -1,11 +1,16 @@
-"use strict";
+import { range } from "./utils.js";
+import { getAllElements, getElement } from "../DOMutils.js";
+import { CALENDAR_IMAGE } from "./globals.js";
+import { timer } from "./timer.js";
 
-function initHome() {
-  let home = document.getElementById("home");
-  let root = document.getElementById("calendar-container");
-  let img = document.getElementById("calendar");
-  let sourceStep = img.width / 5;
-  let today = Date.now();
+export function initHome() {
+  /**
+   * @type {HTMLDivElement}
+   */
+  const root = getElement("#calendar-container");
+
+  const sourceStep = CALENDAR_IMAGE.width / 5;
+  const TODAY = new Date(Date.now());
 
   timer().start();
   createBoxes();
@@ -13,11 +18,11 @@ function initHome() {
   drawBoxes();
 
   function createBoxes() {
-    arrayFromRange(1, 25).forEach((day, index) => {
-      let canvas = document.createElement("canvas");
+    range(1, 25).forEach((day) => {
+      const canvas = document.createElement("canvas");
       canvas.classList.add("calendar-box");
 
-      canvas.dataset.day = day;
+      canvas.dataset.day = day.toString();
       canvas.width = canvas.height = (root.offsetWidth * 0.95) / 5;
 
       root.appendChild(canvas);
@@ -25,37 +30,45 @@ function initHome() {
   }
 
   function blockFutureDate() {
-    let boxes = document.querySelectorAll(".calendar-box");
+    const boxes = document.querySelectorAll(".calendar-box");
 
-    boxes.forEach(box => {
-      let { day } = box.dataset;
-      if (today < new Date(2021, 10, day)) {
+    boxes.forEach((box) => {
+      /**
+       * @type {{day:string}}
+       */
+      //@ts-ignore
+      const { day } = box.dataset;
+      if (TODAY < new Date(2021, 10, Number(day))) {
         box.classList.add("blocked");
       }
     });
   }
 
   function drawBoxes() {
-    let boxes = document.querySelectorAll(".calendar-box");
+    /**
+     * @type {NodeListOf<HTMLCanvasElement>}
+     */
+    const boxes = getAllElements(".calendar-box");
 
     boxes.forEach((box, index) => {
-      let ctx = box.getContext("2d");
+      const ctx = box.getContext("2d");
+      if (ctx !== null) {
+        ctx.drawImage(
+          CALENDAR_IMAGE,
+          (index % 5) * sourceStep,
+          Math.floor(index / 5) * sourceStep,
+          sourceStep,
+          sourceStep,
+          0,
+          0,
+          box.width,
+          box.height
+        );
 
-      ctx.drawImage(
-        img,
-        (index % 5) * sourceStep,
-        Math.floor(index / 5) * sourceStep,
-        sourceStep,
-        sourceStep,
-        0,
-        0,
-        box.width,
-        box.height
-      );
-
-      if (box.classList.contains("blocked")) {
-        ctx.fillStyle = "rgba(0,0,0,0.8)";
-        ctx.fillRect(0, 0, box.width, box.height);
+        if (box.classList.contains("blocked")) {
+          ctx.fillStyle = "rgba(0,0,0,0.8)";
+          ctx.fillRect(0, 0, box.width, box.height);
+        }
       }
     });
   }

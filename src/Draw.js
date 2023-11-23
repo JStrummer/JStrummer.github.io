@@ -1,33 +1,65 @@
-"use strict";
+import { getElement } from "../DOMutils.js";
+import { getLower } from "./utils.js";
 
-class Draw {
+export class Draw {
+  /**
+   *
+   * @param {number} imageName
+   */
   constructor(imageName) {
-    this.canvas = document.getElementById("puzzle-grid");
+    /**
+     * @type {HTMLCanvasElement}
+     */
+    this.canvas = getElement("puzzle-grid");
+    /**
+     * @type {CanvasRenderingContext2D}
+     */
+    // @ts-ignore
     this.ctx = this.canvas.getContext("2d");
+    /**
+     * @type {HTMLImageElement}
+     */
     this.img = new Image();
+    /**
+     * @type {string}
+     */
     this.imageSrc = "images/" + imageName + ".jpeg";
+    /**
+     * @type {HTMLImageElement}
+     */
     this.frame = new Image();
+    /**
+     * @type {string}
+     */
     this.frame.src = "images/frame.png";
   }
 
+  /**
+   *
+   * @param {number[]} grid
+   */
   init(grid) {
     this.canvas.height = this.canvas.width;
     this.img.addEventListener("load", this.grid.bind(this, grid));
     this.img.src = this.imageSrc;
-
+    //@ts-ignore
     this.canvas.parentNode.style.display = "block";
   }
 
+  /**
+   *
+   * @param {number[]} grid
+   */
   grid(grid) {
     this.reset();
 
-    let n = Math.sqrt(grid.length);
-    let imgTileSize = getLower(this.img.width, this.img.height) / n;
-    let frameTileSize = getLower(this.frame.width, this.frame.height) / n;
-    let tileSize = this.canvas.width / n;
+    const n = Math.sqrt(grid.length);
+    const imgTileSize = getLower(this.img.width, this.img.height) / n;
+    const frameTileSize = getLower(this.frame.width, this.frame.height) / n;
+    const tileSize = this.canvas.width / n;
 
     for (let i = 0; i < grid.length; i++) {
-      let tile = grid[i];
+      const tile = grid[i];
 
       this.ctx.drawImage(
         this.img,
