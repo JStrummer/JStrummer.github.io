@@ -24,7 +24,6 @@ html {
 
 body {
   margin: 0;
-  margin-top: 8px;
 }
 
 body,
@@ -34,13 +33,13 @@ button {
   font-size: 1.5rem;
 }
 
-#countdown-container {
-  padding: 0.3em;
-}
-
 #app {
   width: 100%;
   padding: 8px;
+}
+
+#countdown-container {
+  padding: 0.3em;
 }
 
 #home,
@@ -80,22 +79,7 @@ button {
   width: 80px;
 }
 
-@media (max-width: 430px) {
-  button {
-    width: 60px;
-  }
-
-  body,
-  button {
-    font-size: 1rem;
-  }
-}
-
 .calendar-box {
-  border: 2px solid white;
-}
-
-.calendar-box:hover {
   border: 2px solid hsla(0, 0%, 0%, 0.3);
   cursor: pointer;
   width: 100%;
