@@ -1,4 +1,4 @@
-import { getElement } from "../DOMutils.js";
+import { getElement } from "./DOMutils.js";
 import { getLower } from "./utils.js";
 
 export class Draw {

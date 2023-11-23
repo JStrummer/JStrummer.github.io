@@ -1,5 +1,5 @@
 import { range } from "./utils.js";
-import { getElement } from "../DOMutils.js";
+import { getElement } from "./DOMutils.js";
 import { CALENDAR_IMAGE } from "./globals.js";
 import { TIMER } from "./timer.js";
 

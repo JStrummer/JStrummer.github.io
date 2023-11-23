@@ -1,5 +1,5 @@
 import { not, isNull, isDef } from "./utils.js";
-import { getAllElements, getElement } from "../DOMutils.js";
+import { getAllElements, getElement } from "./DOMutils.js";
 import { HOME, PUZZLE } from "./globals.js";
 import { initHome } from "./home.js";
 import { Level } from "./Level.js";
@@ -13,6 +13,7 @@ let level = null;
  * @type {EventListener|undefined}
  */
 let changeDifficultyHandler;
+
 window.addEventListener("load", (event) => {
   initHome();
   goToHome();

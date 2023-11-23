@@ -1,4 +1,4 @@
-import { getElement } from "../DOMutils.js";
+import { getElement } from "./DOMutils.js";
 
 export const XMAS = new Date(new Date().getFullYear(), 11, 25);
 

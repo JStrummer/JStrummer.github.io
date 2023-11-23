@@ -1,5 +1,5 @@
 import { XMAS } from "./globals.js";
-import { getElement } from "../DOMutils.js";
+import { getElement } from "./DOMutils.js";
 
 export function TIMER() {
   const translateMonth = [
