@@ -1,7 +1,7 @@
 import { range } from "./utils.js";
 import { getAllElements, getElement } from "../DOMutils.js";
 import { CALENDAR_IMAGE } from "./globals.js";
-import { timer } from "./timer.js";
+import { TIMER } from "./timer.js";
 
 export function initHome() {
   /**
@@ -12,7 +12,7 @@ export function initHome() {
   const sourceStep = CALENDAR_IMAGE.width / 5;
   const TODAY = new Date(Date.now());
 
-  timer().start();
+  TIMER().start();
   createBoxes();
   blockFutureDate();
   drawBoxes();
