@@ -10,7 +10,7 @@ export class Draw {
     /**
      * @type {HTMLCanvasElement}
      */
-    this.canvas = getElement("puzzle-grid");
+    this.canvas = getElement("#puzzle-grid");
     /**
      * @type {CanvasRenderingContext2D}
      */
