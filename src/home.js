@@ -20,7 +20,7 @@ export function initHome() {
   function createBoxes() {
     range(1, 25).forEach((day) => {
       const canvas = document.createElement("canvas");
-      canvas.classList.add("calendar-box");
+      canvas.classList.add("calendar-box", "blocked");
 
       canvas.dataset.day = day.toString();
 
@@ -63,11 +63,6 @@ export function initHome() {
           box.width,
           box.height
         );
-
-        if (box.classList.contains("blocked")) {
-          ctx.fillStyle = "rgba(0,0,0,0.8)";
-          ctx.fillRect(0, 0, box.width, box.height);
-        }
       }
     });
   }
