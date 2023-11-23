@@ -5,7 +5,7 @@ export const XMAS = new Date(new Date().getFullYear(), 11, 25);
 /**
  * @type {HTMLImageElement}
  */
-export const CALENDAR_IMAGE = getElement("#calendar");
+export const CALENDAR_IMAGE = getElement("#calendar-source-image");
 /**
  * @type {HTMLDivElement}
  */
